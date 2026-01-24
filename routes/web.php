@@ -6,4 +6,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::livewire('/posts', 'pages::post.index');
 Route::livewire('/post/create', 'pages::post.create');
+

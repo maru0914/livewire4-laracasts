@@ -6,6 +6,15 @@
         </div>
 
         <div class="flex gap-2">
+            @if (count($this->selected) > 0)
+                <div class="max-lg:hidden flex justify-start items-center gap-2">
+                    <flux:subheading class="whitespace-nowrap">
+                        <span>{{ count($this->selected) }}</span> selected:
+                    </flux:subheading>
+
+                    <flux:button size="sm" variant="danger" icon="trash" wire:click="deleteSelected">Delete</flux:button>
+                </div>
+            @endif
             <div class="max-lg:hidden flex justify-start items-center gap-2">
                 <flux:subheading class="whitespace-nowrap">Sort by:</flux:subheading>
 
@@ -24,12 +33,18 @@
 
     <div class="mt-8 grid grid-cols-3 gap-6 [*:has([data-dim-sorting][data-loading])_&]:opacity-50">
         @foreach ($this->posts as $post)
-            <livewire:pages::post.card
-                :$post
-                :wire:key="$post->id"
-                :lazy.bundle="$loop->iteration > 9"
-                :class="$post->status === 'draft' ? 'border-dashed' : ''"
-            />
+            <div>
+                <livewire:pages::post.card
+                    :$post
+                    :wire:key="$post->id"
+                    :lazy.bundle="$loop->iteration > 9"
+                    :class="$post->status === 'draft' ? 'border-dashed' : ''"
+                >
+                    <livewire:slot name="checkbox">
+                        <flux:checkbox wire:model.live="selected" :value="$post->id" />
+                    </livewire:slot>
+                </livewire:pages::post.card>
+            </div>
         @endforeach
     </div>
 </div>

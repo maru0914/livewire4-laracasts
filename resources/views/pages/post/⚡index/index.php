@@ -9,6 +9,8 @@ use Livewire\Component;
 
 new #[Title('Posts')]class extends Component
 {
+    public array $selected = [];
+
     public string $sort = 'newest';
 
     #[Computed]
@@ -23,8 +25,10 @@ new #[Title('Posts')]class extends Component
            ->get();
     }
 
-    public function delete(Post $post): void
+    public function deleteSelected(): void
     {
-        $post->delete();
+        Post::whereIn('id', $this->selected)->delete();
+
+        $this->selected = [];
     }
 };

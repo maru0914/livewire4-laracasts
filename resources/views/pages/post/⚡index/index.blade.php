@@ -24,7 +24,12 @@
 
     <div class="mt-8 grid grid-cols-3 gap-6 [*:has([data-dim-sorting][data-loading])_&]:opacity-50">
         @foreach ($this->posts as $post)
-            <livewire:pages::post.card :$post :wire:key="$post->id" :lazy.bundle="$loop->iteration > 6" />
+            <livewire:pages::post.card
+                :$post
+                :wire:key="$post->id"
+                :lazy.bundle="$loop->iteration > 9"
+                :class="$post->status === 'draft' ? 'border-dashed' : ''"
+            />
         @endforeach
     </div>
 </div>

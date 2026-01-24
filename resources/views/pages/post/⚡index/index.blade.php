@@ -1,3 +1,18 @@
+@placeholder
+<div class="max-w-5xl">
+    <div>
+        <flux:heading size="xl">Posts</flux:heading>
+        <flux:text class="mt-2">Manage your blog posts and articles</flux:text>
+    </div>
+
+    <div class="mt-8 grid grid-cols-3 gap-6">
+        @foreach(range(1, 6) as $_)
+            <flux:skeleton class="min-h-56 rounded-lg" animate="shimmer" />
+        @endforeach
+    </div>
+</div>
+@endplaceholder
+
 <div class="max-w-5xl">
     <div class="flex items-center justify-between">
         <div>

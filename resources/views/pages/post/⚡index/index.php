@@ -3,10 +3,11 @@
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Posts')]class extends Component
+new #[Lazy, Title('Posts')]class extends Component
 {
     public string $sort = 'newest';
 
